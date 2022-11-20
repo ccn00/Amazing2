@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Amazing2</string>
+    <string name="title_home">Home</string>
+    <string name="title_carrito">Cart</string>
+    <string name="title_perfil">Profile</string>
+    <string name="monitor_1">Monitor 1</string>
+    <string name="monitor_2">Monitor 2</string>
+    <string name="monitor_3">Monitor 3</string>
+    <string name="movil_1">Smartphone 1</string>
+    <string name="movil_2">Smartphone 2</string>
+    <string name="movil_3">Smartphone 3</string>
+    <string name="raton_1">Mouse 1</string>
+    <string name="raton_2">Mouse 2</string>
+    <string name="raton_3">Mouse 3</string>
+    <string name="auriculares_1">Headphones 1</string>
+    <string name="auriculares_2">Headphones 2</string>
+    <string name="auriculares_3">Headphones 3</string>
+    <string name="portatil_1">Laptop 1</string>
+    <string name="portatil_2">Laptop 2</string>
+    <string name="portatil_3">Laptop 3</string>
+</resources>
