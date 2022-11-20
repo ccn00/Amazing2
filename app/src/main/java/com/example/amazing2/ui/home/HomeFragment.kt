@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
 
     var dataProducto = mutableListOf<ProductoElement>()
     private lateinit var productoAdapter : ProductoAdapter
-    private lateinit var recyclerViewProductos: RecyclerView
+    //private lateinit var recyclerViewProductos: RecyclerView
     // Hacemos una variable productos que es un ArrayList de ProductoElement
     var productos = ArrayList<ProductoElement>()
     var informacionCargada = false
@@ -42,7 +42,11 @@ class HomeFragment : Fragment() {
         // _binding sirve para que no se produzca un memory leak
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-/*
+
+        // Cargamos los elementos del xml, SEARCH y RECYCLERVIEW
+        //val barraBusqueda = binding.searchView
+        val recyclerViewProductos = binding.recyclerViewHome
+
         // Comprobamos si la informacion ha sido cargada
         if (!informacionCargada) {
             // Cargamos la informacion
@@ -50,11 +54,15 @@ class HomeFragment : Fragment() {
             informacionCargada = true
         }
 
-        showProductos()
-        recyclerViewProductos.adapter = productoAdapter
-        productoAdapter.setProductos(productos)
-*/
+        // SHOW DATA
+        recyclerViewProductos.layoutManager = LinearLayoutManager(context)
+        productoAdapter = ProductoAdapter()
 
+        // Cargamos los datos en el adapter
+        productoAdapter.setProductos(productos)
+
+        //
+        recyclerViewProductos.adapter = productoAdapter
 
 
         return root
@@ -84,12 +92,14 @@ class HomeFragment : Fragment() {
         productos.add(ProductoElement("Smartphone 3", 445.99, R.drawable.movil))
         productos.add(ProductoElement("Auriculares 3", 25.99, R.drawable.auriculares))
     }
-
+/*
     fun showProductos(){
         // Le asignamos LayoutManager al RecyclerView
         recyclerViewProductos.layoutManager = LinearLayoutManager(context)
         // Cogemos el adaptador ProductoAdapter
         productoAdapter = ProductoAdapter()
     }
+    */
+
 
 }
