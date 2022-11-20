@@ -19,4 +19,6 @@
     <string name="portatil_1">Laptop 1</string>
     <string name="portatil_2">Laptop 2</string>
     <string name="portatil_3">Laptop 3</string>
+    <string name="carrito_vacio">Empty cart</string>
+    <string name="logo_carrito_vacio">Empty cart logo</string>
 </resources>
