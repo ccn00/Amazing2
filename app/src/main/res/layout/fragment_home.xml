@@ -31,9 +31,9 @@
         <!-- Recycler view con elementos de tipo product_element (card_view de productos) -->
         <!-- Los productos los organizaremos en 2 columnas y x filas segun el numero de productos
         que haya-->
-        <!--
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -46,7 +46,6 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
--->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
