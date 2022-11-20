@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name">Amazing2</string>
+    <string name="app_name" translatable="false">Amazing2</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_carrito">Carrito</string>
+    <string name="title_perfil">Perfil</string>
+    <string name="monitor_1">Monitor 1</string>
+    <string name="monitor_2">Monitor 2</string>
+    <string name="monitor_3">Monitor 3</string>
+    <string name="movil_1">Móvil 1</string>
+    <string name="movil_2">Móvil 2</string>
+    <string name="movil_3">Móvil 3</string>
+    <string name="raton_1">Ratón 1</string>
+    <string name="raton_2">Ratón 2</string>
+    <string name="raton_3">Ratón 3</string>
+    <string name="auriculares_1">Auriculares 1</string>
+    <string name="auriculares_2">Auriculares 2</string>
+    <string name="auriculares_3">Auriculares 3</string>
+    <string name="portatil_1">Portátil 1</string>
+    <string name="portatil_2">Portátil 2</string>
+    <string name="portatil_3">Portátil 3</string>
+
 </resources>
