@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.amazing2.R
 import com.example.amazing2.databinding.FragmentCarritoBinding
 
 class CarritoFragment : Fragment() {
@@ -28,10 +29,13 @@ class CarritoFragment : Fragment() {
         _binding = FragmentCarritoBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
+        val textView: TextView = binding.textCarritoVacio
         carritoViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            textView.setText(R.string.carrito_vacio).toString()
         }
+
+
+
         return root
     }
 

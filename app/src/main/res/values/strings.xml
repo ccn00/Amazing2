@@ -3,6 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_carrito">Carrito</string>
     <string name="title_perfil">Perfil</string>
+    <string name="carrito_vacio">Carrito vacio</string>
+
+
+
     <string name="monitor_1">Monitor 1</string>
     <string name="monitor_2">Monitor 2</string>
     <string name="monitor_3">Monitor 3</string>
@@ -18,5 +22,6 @@
     <string name="portatil_1">Portátil 1</string>
     <string name="portatil_2">Portátil 2</string>
     <string name="portatil_3">Portátil 3</string>
+    <string name="logo_carrito_vacio">Logo carrito vacio</string>
 
 </resources>
