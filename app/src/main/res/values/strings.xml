@@ -3,7 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_carrito">Carrito</string>
     <string name="title_perfil">Perfil</string>
-    <string name="carrito_vacio">Carrito vacio</string>
+    <string name="carrito_vacio">Carrito vacío</string>
     <string name="buscador">Buscar</string>
 
     <string name="mis_pedidos">Mis pedidos</string>
@@ -32,6 +32,6 @@
     <string name="portatil_1">Portátil 1</string>
     <string name="portatil_2">Portátil 2</string>
     <string name="portatil_3">Portátil 3</string>
-    <string name="logo_carrito_vacio">Logo carrito vacio</string>
+    <string name="logo_carrito_vacio">Logo carrito vacío</string>
 
 </resources>

@@ -1,10 +1,9 @@
-package com.example.amazing2.ui.notifications
+package com.example.amazing2.ui.perfil
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amazing2.adapter.PerfilElement
-import com.example.amazing2.adapter.ProductoElement
 
 class PerfilViewModel : ViewModel() {
 
