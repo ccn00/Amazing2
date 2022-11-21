@@ -1,10 +1,13 @@
 package com.example.amazing2.ui.notifications
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +16,7 @@ import com.example.amazing2.adapter.PerfilElement
 import com.example.amazing2.adapter.PerfilElementAdapter
 import com.example.amazing2.databinding.FragmentPerfilBinding
 
-class PerfilFragment : Fragment() {
+class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
 
     private var _binding: FragmentPerfilBinding? = null
 
@@ -43,7 +46,7 @@ class PerfilFragment : Fragment() {
             informacionCargada = true
         }
 
-        val perfilAdapter = PerfilElementAdapter()
+        val perfilAdapter = PerfilElementAdapter(this)
         perfilAdapter.setPerfilElements(profileElements)
 
         val recyclerView: RecyclerView = binding.recyclerViewPerfil
@@ -53,6 +56,18 @@ class PerfilFragment : Fragment() {
 
 
         return root
+    }
+
+    override fun onItemClick(position: Int) {
+        val clickedItem: PerfilElement = profileElements[position]
+
+        // Si se ha pulsado el item 5 ajustes, abrimos la actividad de ajustes de accesibilidad
+        if (position == 5) {
+            startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+        } else {
+            Toast.makeText(context, "Elemento $position", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onDestroyView() {
