@@ -11,9 +11,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Barra de busqueda -->
         <androidx.appcompat.widget.SearchView
@@ -21,13 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="1dp"
             android:background="@color/white"
-            android:padding="10dp"
-            android:queryBackground="@color/white"
-            android:queryHint="Search" />
+            android:contentDescription="@string/buscador"
+            android:hapticFeedbackEnabled="true"
+            android:queryBackground="@color/black_grey" />
 
 
         <!-- Recycler view con elementos de tipo product_element (card_view de productos) -->
@@ -40,10 +39,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="0dp"
             android:background="@color/white"
-            android:padding="0dp"
-            android:scrollbars="vertical"
+
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
