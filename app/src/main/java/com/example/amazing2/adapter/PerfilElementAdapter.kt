@@ -3,12 +3,16 @@ package com.example.amazing2.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amazing2.R
 import com.example.amazing2.databinding.ProfileElementBinding
 
 
-class PerfilElementAdapter : RecyclerView.Adapter<PerfilElementAdapter.ViewHolder>() {
+
+
+class PerfilElementAdapter (private val listener: OnItemClickListener) : RecyclerView.Adapter<PerfilElementAdapter.ViewHolder>() {
 
     private var perfilElements: List<PerfilElement> = ArrayList()
 
@@ -31,8 +35,12 @@ class PerfilElementAdapter : RecyclerView.Adapter<PerfilElementAdapter.ViewHolde
         holder.bind(perfilElements[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val binding = ProfileElementBinding.bind(itemView)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         fun bind(perfilElement: PerfilElement) {
             binding.textViewNombreProfile.setText(perfilElement.nombre)
@@ -40,6 +48,18 @@ class PerfilElementAdapter : RecyclerView.Adapter<PerfilElementAdapter.ViewHolde
 
         }
 
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
+            }
+
+        }
+
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
     }
 
 }
