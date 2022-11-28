@@ -28,4 +28,7 @@
     <string name="ajustes">Settings</string>
     <string name="visto_recientemente">Recently viewed</string>
     <string name="historial_compras">Shopping history</string>
+    <string name="utilidades">Utilities</string>
+    <string name="nfc">NFC scaner</string>
+    <string name="codigo_barras">Barcode/QR scaner</string>
 </resources>

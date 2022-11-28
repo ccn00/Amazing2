@@ -60,12 +60,27 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         val clickedItem: PerfilElement = profileElements[position]
 
+
+
+
         // Si se ha pulsado el item 5 ajustes, abrimos la actividad de ajustes de accesibilidad
-        if (position == 5) {
-            startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
-        } else {
-            Toast.makeText(context, "Elemento $position", Toast.LENGTH_SHORT).show()
+        when (position) {
+            4 -> {
+                Toast.makeText(context, "Utilidades", Toast.LENGTH_SHORT).show()
+                // Cambiamos main activity por el
+
+            }
+
+            5 -> {
+                startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
+            }
+            else -> {
+                Toast.makeText(context, "Elemento $position", Toast.LENGTH_SHORT).show()
+            }
         }
+
+
+
 
     }
 
@@ -81,7 +96,7 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
         profileElements.add(PerfilElement(R.string.informacion_entrega, R.drawable.ic_baseline_info_24))
         profileElements.add(PerfilElement(R.string.productos_guardados, R.drawable.ic_baseline_save_24))
         profileElements.add(PerfilElement(R.string.visto_recientemente, R.drawable.ic_baseline_remove_red_eye_24))
-        profileElements.add(PerfilElement(R.string.historial_compras, R.drawable.ic_baseline_history_24))
+        profileElements.add(PerfilElement(R.string.utilidades, R.drawable.ic_baseline_build_24))
         profileElements.add(PerfilElement(R.string.ajustes, R.drawable.ic_baseline_settings_24))
 
     }

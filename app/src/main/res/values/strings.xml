@@ -11,11 +11,10 @@
     <string name="productos_guardados">Productos guardados</string>
     <string name="visto_recientemente">Visto recientemente</string>
     <string name="historial_compras">Historial de compras</string>
+    <string name="utilidades">Utilidades</string>
     <string name="ajustes">Ajustes</string>
-
-
-
-
+    <string name="nfc">Escáner NFC</string>
+    <string name="codigo_barras">Escáner código de barras/QR</string>
 
     <string name="monitor_1">Monitor 1</string>
     <string name="monitor_2">Monitor 2</string>
@@ -33,5 +32,4 @@
     <string name="portatil_2">Portátil 2</string>
     <string name="portatil_3">Portátil 3</string>
     <string name="logo_carrito_vacio">Logo carrito vacío</string>
-
 </resources>
