@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amazing2.R
 import com.example.amazing2.adapter.PerfilElement
@@ -22,6 +24,8 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+
 
     var profileElements = ArrayList<PerfilElement>()
     var informacionCargada = false
@@ -57,17 +61,19 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
         return root
     }
 
+
+
     override fun onItemClick(position: Int) {
-        val clickedItem: PerfilElement = profileElements[position]
-
-
-
+        //val clickedItem: PerfilElement = profileElements[position]
 
         // Si se ha pulsado el item 5 ajustes, abrimos la actividad de ajustes de accesibilidad
         when (position) {
             4 -> {
                 Toast.makeText(context, "Utilidades", Toast.LENGTH_SHORT).show()
-                // Cambiamos main activity por el
+
+                // Cambiamos de vista con Navigation
+                //val navController: NavController = Navigation.findNavController(requireActivity(), R.id.)
+                view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_perfil_to_navigation_utilidades) }
 
             }
 
@@ -78,10 +84,6 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
                 Toast.makeText(context, "Elemento $position", Toast.LENGTH_SHORT).show()
             }
         }
-
-
-
-
     }
 
     override fun onDestroyView() {
@@ -90,7 +92,7 @@ class PerfilFragment : Fragment(), PerfilElementAdapter.OnItemClickListener {
     }
 
 
-    fun loadProfileElements(){
+    private fun loadProfileElements(){
         // Estructura de perfilElement
         profileElements.add(PerfilElement(R.string.mis_pedidos, R.drawable.ic_baseline_shopping_basket_24))
         profileElements.add(PerfilElement(R.string.informacion_entrega, R.drawable.ic_baseline_info_24))

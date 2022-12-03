@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -18,8 +18,25 @@
         tools:layout="@layout/fragment_carrito" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_perfil"
         android:name="com.example.amazing2.ui.perfil.PerfilFragment"
         android:label="@string/title_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_navigation_perfil_to_navigation_utilidades"
+            app:destination="@id/navigation_utilidades" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_utilidades"
+        android:name="com.example.amazing2.ui.perfil.Utilidades"
+        android:label="Utilidades"
+        tools:layout="@layout/fragment_utilidades" />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.amazing2.ui.home.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" />
+
+
 </navigation>
