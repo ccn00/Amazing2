@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.amazing2.R
 import com.example.amazing2.adapter.PerfilElement
+import com.example.amazing2.adapter.UtilidadesAdapter
 
 
-class Utilidades : Fragment() {
+class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
+
 
     var utilidadesElement = ArrayList<PerfilElement>()
     var informacionCargada = false
@@ -44,5 +46,17 @@ class Utilidades : Fragment() {
         utilidadesElement.add(PerfilElement(R.string.codigo_barras, R.drawable.ic_baseline_qr_code_scanner_24))
         utilidadesElement.add(PerfilElement(R.string.nfc, R.drawable.ic_baseline_nfc_24))
 
+    }
+
+    override fun onItemClick(position: Int) {
+        when(position){
+            0 -> {
+                // Codigo de barras
+            }
+            1 -> {
+                // NFC
+
+            }
+        }
     }
 }
