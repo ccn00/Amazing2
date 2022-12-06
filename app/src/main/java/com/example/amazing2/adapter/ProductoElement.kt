@@ -7,7 +7,7 @@ package com.example.amazing2.adapter
 class ProductoElement// Creamos el constructor el cual recibe el nombre, el precio y la imagen
     (
     var nombre: Int, var precio: Double,// Una variable imagen a la que se le asignara un drawable
-    var imagen: Int
+    var imagen: Int, var nombre_string: String
 ) {
 
 

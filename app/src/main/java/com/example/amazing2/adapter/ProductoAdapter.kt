@@ -17,9 +17,32 @@ class ProductoAdapter () : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
 
     private var productos: List<ProductoElement> = ArrayList()
 
+
     // Creamos un constructor que recibe una lista de productos
     constructor(productos: List<ProductoElement>) : this() {
         this.productos = productos
+    }
+
+
+    fun updateList(productos: List<ProductoElement>) {
+        this.productos = productos
+        notifyDataSetChanged()
+    }
+
+
+    // Funcion Filter que recibe un texto y devuelve una lista de productos
+    fun filter(text: String): List<ProductoElement> {
+        // Creamos una lista de productos vacia
+        val filteredList = ArrayList<ProductoElement>()
+        // Recorremos la lista de productos
+        for (item in productos) {
+            // Si el nombre del producto contiene el texto que hemos introducido, lo añadimos a la lista
+            if (item.nombre_string.lowercase().contains(text.lowercase())) {
+                filteredList.add(item)
+            }
+        }
+        // Devolvemos la lista de productos
+        return filteredList
     }
 
     override fun getItemCount(): Int {
@@ -48,6 +71,7 @@ class ProductoAdapter () : RecyclerView.Adapter<ProductoAdapter.ViewHolder>() {
             binding.textViewNombreProducto.setText(producto.nombre)
             binding.textViewPrecioProducto.text = producto.precio.toString() + "€"
             binding.imageViewProducto.setImageResource(producto.imagen)
+
         }
 
     }

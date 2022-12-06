@@ -1,11 +1,15 @@
 package com.example.amazing2.ui.perfil
 
 import android.app.ActionBar
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import android.widget.Toolbar
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -15,8 +19,7 @@ import com.example.amazing2.adapter.PerfilElement
 import com.example.amazing2.adapter.UtilidadesAdapter
 import com.example.amazing2.adapter.UtilidadesElement
 import com.example.amazing2.databinding.FragmentUtilidadesBinding
-
-
+import com.google.zxing.integration.android.IntentIntegrator
 
 
 class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
@@ -28,6 +31,15 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
 
     var utilidadesElement = ArrayList<UtilidadesElement>()
     var informacionCargada = false
+
+
+
+
+
+
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +101,11 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
                 // Codigo de barras
                 // Mostramos en un toast el nombre del elemento
                 Toast.makeText(context, "Codigo de barras", Toast.LENGTH_SHORT).show()
+
+                // Lanzamos la actividad de codigo de barras sin el initiateScan porque esta Deprecated
+                // Debemos asignar a zxingActivityResultLauncher el resultado de la actividad
+                initScanner()
+
             }
             1 -> {
                 // NFC
@@ -96,6 +113,68 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
             }
         }
     }
+
+    private fun initScanner() {
+        /*
+        val integrator = IntentIntegrator.forSupportFragment(this)
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        integrator.setPrompt("Escanear")
+        integrator.setCameraId(0)
+        integrator.setBeepEnabled(true)
+        integrator.setBarcodeImageEnabled(true)
+        integrator.initiateScan()
+         */
+
+        /*
+        private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+        result -> {
+            if(result.getContents() == null) {
+                Toast.makeText(MyActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MyActivity.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+         */
+        val integrator = IntentIntegrator.forSupportFragment(this)
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        integrator.setPrompt("Escanear")
+        integrator.setCameraId(0)
+        integrator.setBeepEnabled(true)
+        integrator.setBarcodeImageEnabled(true)
+        integrator.initiateScan()
+
+
+    }
+
+
+    // Lógica codigo de Barras
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(context, "Cancelado", Toast.LENGTH_LONG).show()
+            } else {
+                when(result.contents){
+                    "6700828501046812039315;724001;2022-11-16T18:02:10.453+01:00;e6ed0d40eba4494d9a9b78416381bd2f;;" -> {
+                        Toast.makeText(context, "Ticket", Toast.LENGTH_LONG).show()
+                    }
+                    "987654321" -> {
+                        Toast.makeText(context, "Producto 2", Toast.LENGTH_LONG).show()
+                    }
+                    else -> {
+                        Toast.makeText(context, "Producto no encontrado", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
