@@ -12,4 +12,6 @@ class ViewModelUtilidades: ViewModel() {
     }
     val recycler: LiveData<List<UtilidadesElement>> = _recycler
 
+    var idBotonPulsado = MutableLiveData<String>()
+
 }

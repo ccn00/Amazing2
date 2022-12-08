@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.example.amazing2.MainActivity
 import com.example.amazing2.R
 import com.example.amazing2.adapter.PerfilElement
 import com.example.amazing2.adapter.UtilidadesAdapter
@@ -26,11 +27,17 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
 
     private var _binding: FragmentUtilidadesBinding? = null
 
+    private val bundle = Bundle()
+
+    private val utilidadesViewModel by lazy {
+        ViewModelProvider(this).get(ViewModelUtilidades::class.java)
+    }
 
     private val binding get() = _binding!!
 
     var utilidadesElement = ArrayList<UtilidadesElement>()
     var informacionCargada = false
+
 
 
 
@@ -49,8 +56,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val utilidadesViewModel =
-            ViewModelProvider(this).get(ViewModelUtilidades::class.java)
+
 
 
         _binding = FragmentUtilidadesBinding.inflate(inflater, container, false)
@@ -103,10 +109,28 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
             }
             2 -> {
                 // Mapa
-                Toast.makeText(context, "Mapa", Toast.LENGTH_SHORT).show()
+
+                // Para pasarle datos a traves del navigation, debemos crear un bundle
+
+                bundle.putInt("idBoton", 2)
+
+                // Llamamos a la funcion navigate de Navigation y le pasamos el id del fragment al que queremos ir
+                // y el bundle con los datos
                 // Cambiamos al fragmento del mapa
-                view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_mapsFragment) }
+                view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_mapsFragment, bundle) }
+
             }
+
+            3 -> {
+                // Todas las tiendas
+
+                bundle.putInt("idBoton", 3)
+
+                view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_mapsFragment, bundle) }
+
+            }
+
+
         }
     }
 
@@ -189,6 +213,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
         utilidadesElement.add(UtilidadesElement(R.string.codigo_barras, R.drawable.ic_baseline_qr_code_scanner_24))
         utilidadesElement.add(UtilidadesElement(R.string.nfc, R.drawable.ic_baseline_nfc_24))
         utilidadesElement.add(UtilidadesElement(R.string.ruta_mas_cercana, R.drawable.ic_baseline_map_24))
+        utilidadesElement.add(UtilidadesElement(R.string.todas_las_tiendas, R.drawable.ic_baseline_map_24))
 
     }
 }

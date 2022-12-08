@@ -1,20 +1,23 @@
-package com.example.amazing2
+package com.example.amazing2.ui.perfil
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
+import android.content.Context
+import android.location.LocationManager
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
+import com.example.amazing2.MainActivity
+import com.example.amazing2.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -25,6 +28,13 @@ class MapsFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    var idBtn : Int = 0
+
+    /*
+        private val viewModel by lazy {
+            ViewModelProvider(this).get(ViewModelUtilidades::class.java)
+        }
+    */
     private lateinit var lastLocation: LatLng
     // Feria
     val tienda1 = LatLng(38.9972549, -1.86999)
@@ -38,43 +48,42 @@ class MapsFragment : Fragment() {
     private lateinit var tiendaMasCercana : String
 
     private val callback = OnMapReadyCallback { googleMap ->
-
-
-        calcularTiendaMasCercana()
+        // Comprobamos la variable del viewModel de utilidades, si es 2 es que se ha pulsado el boton de la tienda mas cercana
 
         // Añadimos marcador en posicion actual con la forma de un circulo azul
         googleMap.addMarker(MarkerOptions().position(lastLocation).title("Posicion actual").icon(com.google.android.gms.maps.model.BitmapDescriptorFactory.defaultMarker(com.google.android.gms.maps.model.BitmapDescriptorFactory.HUE_AZURE)))
 
 
-        when (tiendaMasCercana) {
-            "Feria" -> {
-                googleMap.addMarker(MarkerOptions().position(tienda1).title("Tienda de la Feria"))
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda1, 15f))
+        if (idBtn == 2) {
+            calcularTiendaMasCercana()
+
+            when (tiendaMasCercana) {
+                "Feria" -> {
+                    googleMap.addMarker(MarkerOptions().position(tienda1).title("Tienda de la Feria"))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda1, 15f))
+                }
+                "Campus" -> {
+                    googleMap.addMarker(MarkerOptions().position(tienda2).title("Tienda de Campus"))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda2, 15f))
+                }
+                "Estacion" -> {
+                    googleMap.addMarker(MarkerOptions().position(tienda3).title("Tienda de la Estacion"))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda3, 15f))
+                }
+                else -> {
+                    googleMap.addMarker(MarkerOptions().position(albacete).title("Albacete"))
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(albacete, 15f))
+                }
             }
-            "Campus" -> {
-                googleMap.addMarker(MarkerOptions().position(tienda2).title("Tienda de Campus"))
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda2, 15f))
-            }
-            "Estacion" -> {
-                googleMap.addMarker(MarkerOptions().position(tienda3).title("Tienda de la Estacion"))
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(tienda3, 15f))
-            }
-            else -> {
-                googleMap.addMarker(MarkerOptions().position(albacete).title("Albacete"))
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(albacete, 15f))
-            }
+        } else {
+            // Mostramos las 3 tiendas
+
+            googleMap.addMarker(MarkerOptions().position(tienda1).title("Tienda de la Feria"))
+            googleMap.addMarker(MarkerOptions().position(tienda2).title("Tienda Campus"))
+            googleMap.addMarker(MarkerOptions().position(tienda3).title("Tienda de la Estacion"))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(albacete, 14f))
+
         }
-
-
-
-        // Mostramos las 3 tiendas
-        /*
-        googleMap.addMarker(MarkerOptions().position(tienda1).title("Tienda de la Feria"))
-        googleMap.addMarker(MarkerOptions().position(tienda2).title("Tienda Campus"))
-        googleMap.addMarker(MarkerOptions().position(tienda3).title("Tienda de la Estacion"))
-        */
-
-
     }
 
 
@@ -86,21 +95,32 @@ class MapsFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_maps, container, false)
 
-        // Obtenemos la ubicacion del usuario
-        //fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        // Guardamos la ubicacion del usuario en la variable lastLocation
-        /*
-        lastLocation = fusedLocationClient.getLastLocation().result?.let {
-            LatLng(it.latitude, it.longitude)
-        } ?: LatLng(0.0, 0.0)
-        */
+
+        val locationManager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+
+        // Obtenemos la ubicacion actual del usuario
+
+        lastLocation = LatLng(location!!.latitude, location.longitude)
+
+
+
+        // Para obtener los datos pasados por el bundle
+        val bundle = this.arguments
+        if (bundle != null) {
+            idBtn = bundle.getInt("idBoton")
+        }
+
 
         requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
 
         return root
-        //return inflater.inflate(R.layout.fragment_maps, container, false)
+
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -114,7 +134,7 @@ class MapsFragment : Fragment() {
         // Para calcular la tienda mas cercana al usuario, debemos calcular la distancia entre el usuario y cada una de las tiendas
         // Para calcular la distancia entre dos puntos, usaremos la distancia euclidea
 
-        lastLocation = LatLng(38.97883, -1.85590)
+        //lastLocation = LatLng(38.97883, -1.85590)
         // Calculamos la distancia entre el usuario y la tienda 1
         val distancia1 = Math.sqrt(Math.pow(lastLocation.latitude - tienda1.latitude, 2.0) + Math.pow(lastLocation.longitude - tienda1.longitude, 2.0))
 
@@ -135,12 +155,6 @@ class MapsFragment : Fragment() {
         } else {
             "Estacion"
         }
-
-
     }
-
-
-
-
 
 }

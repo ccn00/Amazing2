@@ -35,4 +35,5 @@
     <string name="search_hint">Search products</string>
     <string name="ruta_mas_cercana">Find near shop</string>
     <string name="mapa">Map</string>
+    <string name="todas_las_tiendas">All shops</string>
 </resources>

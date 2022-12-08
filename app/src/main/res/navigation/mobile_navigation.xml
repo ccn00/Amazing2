@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_product" />
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="com.example.amazing2.MapsFragment"
+        android:name="com.example.amazing2.ui.perfil.MapsFragment"
         android:label="@string/mapa"
         tools:layout="@layout/fragment_maps" />
 
