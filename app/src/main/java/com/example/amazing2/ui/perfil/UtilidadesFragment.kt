@@ -34,20 +34,10 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
 
 
 
-
-
-
-
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Quitamos la barra de navegacion
-        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
-
     }
 
 
@@ -66,7 +56,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
         _binding = FragmentUtilidadesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
 
         // Comprobamos si la informacion ya ha sido cargada
         if (!informacionCargada) {
@@ -100,7 +90,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
             0 -> {
                 // Codigo de barras
                 // Mostramos en un toast el nombre del elemento
-                Toast.makeText(context, "Codigo de barras", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, "Codigo de barras", Toast.LENGTH_SHORT).show()
 
                 // Lanzamos la actividad de codigo de barras sin el initiateScan porque esta Deprecated
                 // Debemos asignar a zxingActivityResultLauncher el resultado de la actividad
@@ -110,6 +100,12 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
             1 -> {
                 // NFC
                 Toast.makeText(context, "NFC", Toast.LENGTH_SHORT).show()
+            }
+            2 -> {
+                // Mapa
+                Toast.makeText(context, "Mapa", Toast.LENGTH_SHORT).show()
+                // Cambiamos al fragmento del mapa
+                view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_mapsFragment) }
             }
         }
     }
@@ -165,6 +161,9 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
                     "987654321" -> {
                         Toast.makeText(context, "Producto 2", Toast.LENGTH_LONG).show()
                     }
+                    "5000394203969" -> {
+                        Toast.makeText(context, "Monitor", Toast.LENGTH_LONG).show()
+                    }
                     else -> {
                         Toast.makeText(context, "Producto no encontrado", Toast.LENGTH_LONG).show()
                     }
@@ -189,6 +188,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
         // Estructura de perfilElement
         utilidadesElement.add(UtilidadesElement(R.string.codigo_barras, R.drawable.ic_baseline_qr_code_scanner_24))
         utilidadesElement.add(UtilidadesElement(R.string.nfc, R.drawable.ic_baseline_nfc_24))
+        utilidadesElement.add(UtilidadesElement(R.string.ruta_mas_cercana, R.drawable.ic_baseline_map_24))
 
     }
 }

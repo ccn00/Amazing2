@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,15 @@
             android:layout_marginBottom="0dp"
             android:background="@color/white"
             android:padding="0dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+
+
+
+
+        <!--
+        Cogemos el cardview profile_element y lo añadimos al layout cambiandole el icono
+        -->
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

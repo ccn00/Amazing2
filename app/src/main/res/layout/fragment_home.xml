@@ -27,6 +27,8 @@
             android:hapticFeedbackEnabled="true"
             android:hint="@string/search_hint"
             android:voiceSearchMode="showVoiceSearchButton|launchRecognizer"
+            android:voiceIcon="@drawable/ic_baseline_mic_24"
+            android:imeOptions="actionSearch"
             app:iconifiedByDefault="false"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,8 @@
 
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
+
+
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
