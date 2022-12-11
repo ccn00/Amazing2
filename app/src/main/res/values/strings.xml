@@ -40,4 +40,5 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="search_hint">Buscar productos</string>
     <string name="mapa">Mapa</string>
+    <string name="detalles_del_producto">Detalles del producto</string>
 </resources>

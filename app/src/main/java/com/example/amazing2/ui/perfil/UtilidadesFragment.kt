@@ -57,8 +57,6 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
     ): View {
         // Inflate the layout for this fragment
 
-
-
         _binding = FragmentUtilidadesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -103,11 +101,11 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
                 initScanner()
 
             }
-            1 -> {
+            /*1 -> {
                 // NFC
                 Toast.makeText(context, "NFC", Toast.LENGTH_SHORT).show()
-            }
-            2 -> {
+            }*/
+            1 -> {
                 // Mapa
 
                 // Para pasarle datos a traves del navigation, debemos crear un bundle
@@ -121,7 +119,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
 
             }
 
-            3 -> {
+            2 -> {
                 // Todas las tiendas
 
                 bundle.putInt("idBoton", 3)
@@ -182,12 +180,30 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
                     "6700828501046812039315;724001;2022-11-16T18:02:10.453+01:00;e6ed0d40eba4494d9a9b78416381bd2f;;" -> {
                         Toast.makeText(context, "Ticket", Toast.LENGTH_LONG).show()
                     }
+                    "8815699545" -> {
+                        //Toast.makeText(context, "Codigo QR", Toast.LENGTH_LONG).show()
+                        // Cambia a la pantalla del producto
+                        bundle.putString("producto", "monitor")
+                        view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_productFragment, bundle) }
+                    }
                     "987654321" -> {
                         Toast.makeText(context, "Producto 2", Toast.LENGTH_LONG).show()
                     }
                     "5000394203969" -> {
                         Toast.makeText(context, "Monitor", Toast.LENGTH_LONG).show()
                     }
+                    "8436000894219" -> {
+                        //Toast.makeText(context, "Ratón", Toast.LENGTH_LONG).show()
+                        bundle.putString("producto", "raton")
+                        view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_productFragment, bundle) }
+
+                    }
+                    "8480000652355" -> {
+                        //Toast.makeText(context, "Auriculares", Toast.LENGTH_LONG).show()
+                        bundle.putString("producto", "auriculares")
+                        view?.let { Navigation.findNavController(it).navigate(R.id.action_navigation_utilidades_to_productFragment, bundle) }
+                    }
+
                     else -> {
                         Toast.makeText(context, "Producto no encontrado", Toast.LENGTH_LONG).show()
                     }
@@ -211,7 +227,7 @@ class Utilidades : Fragment(), UtilidadesAdapter.OnItemClickListener {
     private fun loadUtilidadesElements(){
         // Estructura de perfilElement
         utilidadesElement.add(UtilidadesElement(R.string.codigo_barras, R.drawable.ic_baseline_qr_code_scanner_24))
-        utilidadesElement.add(UtilidadesElement(R.string.nfc, R.drawable.ic_baseline_nfc_24))
+        //utilidadesElement.add(UtilidadesElement(R.string.nfc, R.drawable.ic_baseline_nfc_24))
         utilidadesElement.add(UtilidadesElement(R.string.ruta_mas_cercana, R.drawable.ic_baseline_map_24))
         utilidadesElement.add(UtilidadesElement(R.string.todas_las_tiendas, R.drawable.ic_baseline_map_24))
 
